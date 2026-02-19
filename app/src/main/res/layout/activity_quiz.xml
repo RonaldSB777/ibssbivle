@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutQuiz"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#E3F2FD"
+    android:padding="16dp">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/btnVoltar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="← Voltar"
+            android:textSize="14sp"
+            android:backgroundTint="#1976D2"
+            android:textColor="#FFFFFF"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/txtPontuacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pontos: 0"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#1976D2"/>
+    </LinearLayout>
+
+    <!-- Nível -->
+    <TextView
+        android:id="@+id/txtNivel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nível: Fácil"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#4CAF50"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Progresso -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="8dp">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:progressTint="#4CAF50"/>
+
+        <TextView
+            android:id="@+id/txtProgresso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1/10"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"
+            android:textColor="#333333"/>
+    </LinearLayout>
+
+    <!-- Pergunta -->
+    <TextView
+        android:id="@+id/txtPergunta"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Pergunta aqui..."
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:gravity="center"
+        android:padding="16dp"
+        android:background="#FFFFFF"
+        android:layout_marginBottom="16dp"
+        android:elevation="4dp"/>
+
+    <!-- Opções -->
+    <Button
+        android:id="@+id/btnOpcao1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Opção A"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#1976D2"
+        android:textColor="#FFFFFF"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btnOpcao2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Opção B"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#1976D2"
+        android:textColor="#FFFFFF"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btnOpcao3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Opção C"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#1976D2"
+        android:textColor="#FFFFFF"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btnOpcao4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Opção D"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#1976D2"
+        android:textColor="#FFFFFF"
+        android:textAllCaps="false"/>
+
+</LinearLayout>
