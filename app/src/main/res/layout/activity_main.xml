@@ -49,7 +49,10 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:visibility="visible">
-            <ListView android:id="@+id/listLivros" android:layout_width="match_parent" android:layout_height="match_parent"/>
+            <ListView 
+                android:id="@+id/listLivros" 
+                android:layout_width="match_parent" 
+                android:layout_height="match_parent"/>
         </LinearLayout>
 
         <!-- 2️⃣ TELA DE BUSCA -->
@@ -60,10 +63,31 @@
             android:orientation="vertical"
             android:visibility="gone"
             android:padding="16dp">
-            <TextView android:text="🔎 Pesquisar" android:textSize="20sp" android:textStyle="bold" android:textColor="#1976D2" android:layout_marginBottom="10dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-            <EditText android:id="@+id/edtBusca" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Digite uma palavra..." android:padding="12dp"/>
-            <Button android:id="@+id/btnPesquisar" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Pesquisar" android:layout_marginTop="10dp"/>
-            <ListView android:id="@+id/listResultados" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginTop="10dp"/>
+            <TextView 
+                android:text="🔎 Pesquisar" 
+                android:textSize="20sp" 
+                android:textStyle="bold" 
+                android:textColor="#1976D2" 
+                android:layout_marginBottom="10dp" 
+                android:layout_width="wrap_content" 
+                android:layout_height="wrap_content"/>
+            <EditText 
+                android:id="@+id/edtBusca" 
+                android:layout_width="match_parent" 
+                android:layout_height="wrap_content" 
+                android:hint="Digite uma palavra..." 
+                android:padding="12dp"/>
+            <Button 
+                android:id="@+id/btnPesquisar" 
+                android:layout_width="match_parent" 
+                android:layout_height="wrap_content" 
+                android:text="Pesquisar" 
+                android:layout_marginTop="10dp"/>
+            <ListView 
+                android:id="@+id/listResultados" 
+                android:layout_width="match_parent" 
+                android:layout_height="match_parent" 
+                android:layout_marginTop="10dp"/>
         </LinearLayout>
 
         <!-- 3️⃣ TELA DE FAVORITOS -->
@@ -73,11 +97,22 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:visibility="gone">
-            <TextView android:text="⭐ Favoritos" android:textSize="20sp" android:textStyle="bold" android:gravity="center" android:padding="16dp" android:textColor="#1976D2" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            <ListView android:id="@+id/listFavoritos" android:layout_width="match_parent" android:layout_height="match_parent"/>
+            <TextView 
+                android:text="⭐ Favoritos" 
+                android:textSize="20sp" 
+                android:textStyle="bold" 
+                android:gravity="center" 
+                android:padding="16dp" 
+                android:textColor="#1976D2" 
+                android:layout_width="match_parent" 
+                android:layout_height="wrap_content"/>
+            <ListView 
+                android:id="@+id/listFavoritos" 
+                android:layout_width="match_parent" 
+                android:layout_height="match_parent"/>
         </LinearLayout>
 
-        <!-- 4️⃣ TELA VERSÍCULO DO DIA (NOVO) -->
+        <!-- 4️⃣ TELA VERSÍCULO DO DIA -->
         <LinearLayout
             android:id="@+id/layoutVersiculoDia"
             android:layout_width="match_parent"
@@ -86,13 +121,41 @@
             android:visibility="gone"
             android:gravity="center"
             android:padding="24dp">
-            <TextView android:text="🔔 Versículo do Dia" android:textSize="22sp" android:textStyle="bold" android:textColor="#1976D2" android:layout_marginBottom="20dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-            <TextView android:id="@+id/txtVersiculoDia" android:text="Carregando..." android:textSize="18sp" android:gravity="center" android:lineSpacingExtra="6dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            <TextView android:id="@+id/txtReferenciaDia" android:text="" android:textSize="16sp" android:textStyle="italic" android:textColor="#1976D2" android:gravity="center" android:layout_marginTop="16dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            <Button android:id="@+id/btnCompartilharDia" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="📤 Compartilhar" android:layout_marginTop="24dp"/>
+            <TextView 
+                android:text="🔔 Versículo do Dia" 
+                android:textSize="22sp" 
+                android:textStyle="bold" 
+                android:textColor="#1976D2" 
+                android:layout_marginBottom="20dp" 
+                android:layout_width="wrap_content" 
+                android:layout_height="wrap_content"/>
+            <TextView 
+                android:id="@+id/txtVersiculoDia" 
+                android:text="Carregando..." 
+                android:textSize="18sp" 
+                android:gravity="center" 
+                android:lineSpacingExtra="6dp" 
+                android:layout_width="match_parent" 
+                android:layout_height="wrap_content"/>
+            <TextView 
+                android:id="@+id/txtReferenciaDia" 
+                android:text="" 
+                android:textSize="16sp" 
+                android:textStyle="italic" 
+                android:textColor="#1976D2" 
+                android:gravity="center" 
+                android:layout_marginTop="16dp" 
+                android:layout_width="match_parent" 
+                android:layout_height="wrap_content"/>
+            <Button 
+                android:id="@+id/btnCompartilharDia" 
+                android:layout_width="wrap_content" 
+                android:layout_height="wrap_content" 
+                android:text="📤 Compartilhar" 
+                android:layout_marginTop="24dp"/>
         </LinearLayout>
 
-        <!-- 5️⃣ TELA PLANO DE LEITURA (NOVO) -->
+        <!-- 5️⃣ TELA PLANO DE LEITURA -->
         <LinearLayout
             android:id="@+id/layoutPlanoLeitura"
             android:layout_width="match_parent"
@@ -100,10 +163,36 @@
             android:orientation="vertical"
             android:visibility="gone"
             android:padding="16dp">
-            <TextView android:text="📊 Plano de Leitura" android:textSize="20sp" android:textStyle="bold" android:textColor="#1976D2" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-            <TextView android:id="@+id/txtDataHoje" android:text="" android:textSize="14sp" android:textColor="#666666" android:layout_marginBottom="16dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-            <ListView android:id="@+id/listPlanoLeitura" android:layout_width="match_parent" android:layout_height="match_parent"/>
+            <TextView 
+                android:text="📊 Plano de Leitura" 
+                android:textSize="20sp" 
+                android:textStyle="bold" 
+                android:textColor="#1976D2" 
+                android:layout_marginBottom="8dp" 
+                android:layout_width="wrap_content" 
+                android:layout_height="wrap_content"/>
+            <TextView 
+                android:id="@+id/txtDataHoje" 
+                android:text="" 
+                android:textSize="14sp" 
+                android:textColor="#666666" 
+                android:layout_marginBottom="16dp" 
+                android:layout_width="wrap_content" 
+                android:layout_height="wrap_content"/>
+            <ListView 
+                android:id="@+id/listPlanoLeitura" 
+                android:layout_width="match_parent" 
+                android:layout_height="match_parent"/>
         </LinearLayout>
+
+        <!-- ⭐⭐⭐ 6️⃣ TELA PROGRAMAÇÃO SEMANAL (NOVO) ⭐⭐⭐ -->
+        <LinearLayout
+            android:id="@+id/layoutProgramacao"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"/>
+        <!-- ⭐⭐⭐ FIM DA TELA DE PROGRAMAÇÃO ⭐⭐⭐ -->
 
     </LinearLayout>
 

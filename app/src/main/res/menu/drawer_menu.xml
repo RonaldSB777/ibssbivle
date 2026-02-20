@@ -1,23 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_biblia" android:icon="@android:drawable/ic_menu_sort_by_size" android:title="📖 Bíblia" />
-        <item android:id="@+id/nav_buscar" android:icon="@android:drawable/ic_menu_search" android:title="🔎 Buscar" />
-        <item android:id="@+id/nav_favoritos" android:icon="@android:drawable/btn_star_big_on" android:title="⭐ Favoritos" />
-        <item android:id="@+id/nav_versiculo_dia" android:icon="@android:drawable/ic_menu_today" android:title="🔔 Versículo do Dia" />
-        <item android:id="@+id/nav_plano_leitura" android:icon="@android:drawable/ic_menu_my_calendar" android:title="📊 Plano de Leitura" />
-    </group>
+    <item
+        android:id="@+id/nav_biblia"
+        android:title="📖 Bíblia Sagrada" />
 
-    <item android:title="Configurações">
-        <menu>
-            <item android:id="@+id/nav_modo_noturno" android:icon="@android:drawable/ic_menu_view" android:title="🌙 Modo Noturno" />
-            <item android:id="@+id/nav_tamanho_fonte" android:icon="@android:drawable/ic_menu_edit" android:title="🔤 Tamanho da Fonte" />
-        </menu>
-    </item>
-<item
-    android:id="@+id/nav_quiz"
-    android:icon="@android:drawable/ic_menu_help"
-    android:title="🎮 Quiz Bíblico" />
+    <item
+        android:id="@+id/nav_buscar"
+        android:title="🔎 Buscar" />
+
+    <item
+        android:id="@+id/nav_favoritos"
+        android:title="⭐ Favoritos" />
+
+    <item
+        android:id="@+id/nav_versiculo_dia"
+        android:title="🔔 Versículo do Dia" />
+
+    <item
+        android:id="@+id/nav_programacao"
+        android:title="📅 Programação" />
+
+    <item
+        android:id="@+id/nav_plano_leitura"
+        android:title="📊 Plano de Leitura" />
+
+    <item
+        android:id="@+id/nav_quiz"
+        android:title="❓ Quiz Bíblico" />
+
+    <group android:id="@+id/group_config">
+        
+        <item
+            android:id="@+id/nav_modo_noturno"
+            android:title="🌙 Modo Noturno" />
+
+        <item
+            android:id="@+id/nav_tamanho_fonte"
+            android:title="🔤 Tamanho da Fonte" />
+
+    </group>
 
 </menu>

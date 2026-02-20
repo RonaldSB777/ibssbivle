@@ -1,9 +1,6 @@
 package com.ibscc.bible;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,11 +20,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.drawerlayout.widget.DrawerLayout;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.fragment.app.FragmentActivity;
+import androidx.appcompat.app.AlertDialog;
+
 import java.util.Calendar;
 import java.util.List;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -36,6 +35,7 @@ public class MainActivity extends Activity {
     LinearLayout mainContent, toolbar;
 
     LinearLayout layoutBiblia, layoutBuscar, layoutFavoritos, layoutVersiculoDia;
+    LinearLayout layoutProgramacao;
     
     ListView listLivros, listResultados, listFavoritos;
     List<String> livros, abreviacoes;
@@ -83,7 +83,6 @@ public class MainActivity extends Activity {
         configurarVersiculoDia();
         aplicarTema();
         
-        // Ativar notificação diária
         DailyNotificationHelper.setupDailyNotification(this);
     }
 
@@ -99,6 +98,7 @@ public class MainActivity extends Activity {
         layoutBuscar = findViewById(R.id.layoutBuscar);
         layoutFavoritos = findViewById(R.id.layoutFavoritos);
         layoutVersiculoDia = findViewById(R.id.layoutVersiculoDia);
+        layoutProgramacao = findViewById(R.id.layoutProgramacao);
 
         listLivros = findViewById(R.id.listLivros);
         edtBusca = findViewById(R.id.edtBusca);
@@ -141,7 +141,13 @@ public class MainActivity extends Activity {
                     layoutVersiculoDia.setVisibility(View.VISIBLE);
                     txtToolbarTitle.setText("🔔 Versículo do Dia");
                     gerarVersiculoDoDia();
-                } else if (id == R.id.nav_plano_leitura) {
+                } 
+                else if (id == R.id.nav_programacao) {
+                    layoutProgramacao.setVisibility(View.VISIBLE);
+                    txtToolbarTitle.setText("📅 Programação");
+                    carregarProgramacao();
+                }
+                else if (id == R.id.nav_plano_leitura) {
                     mostrarPlanoLeitura();
                 } else if (id == R.id.nav_quiz) {
                     Intent intent = new Intent(MainActivity.this, QuizMenuActivity.class);
@@ -170,6 +176,14 @@ public class MainActivity extends Activity {
         layoutBuscar.setVisibility(View.GONE);
         layoutFavoritos.setVisibility(View.GONE);
         layoutVersiculoDia.setVisibility(View.GONE);
+        layoutProgramacao.setVisibility(View.GONE);
+    }
+
+    private void carregarProgramacao() {
+        getSupportFragmentManager()
+            .beginTransaction()
+            .replace(R.id.layoutProgramacao, new ProgramacaoFragment())
+            .commit();
     }
 
     private void configurarBiblia() {
@@ -380,6 +394,7 @@ public class MainActivity extends Activity {
         layoutBuscar.setBackgroundColor(corFundo);
         layoutFavoritos.setBackgroundColor(corFundo);
         layoutVersiculoDia.setBackgroundColor(corFundo);
+        layoutProgramacao.setBackgroundColor(corFundo);
 
         txtVersiculoDia.setTextColor(corTexto);
         txtReferenciaDia.setTextColor(modoNoturno ? Color.parseColor("#AAAAAA") : Color.parseColor("#666666"));
