@@ -2,10 +2,15 @@
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
+    <!-- ============================================
+         CONTEÚDO PRINCIPAL
+         ============================================ -->
     <LinearLayout
         android:id="@+id/mainContent"
         android:layout_width="match_parent"
@@ -13,200 +18,320 @@
         android:orientation="vertical"
         android:background="#E3F2FD">
 
+        <!-- TOOLBAR MODERNA -->
         <LinearLayout
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="#1976D2"
+            android:elevation="4dp"
             android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:paddingStart="8dp"
-            android:paddingEnd="8dp">
+            android:paddingEnd="16dp">
 
+            <!-- Botão Menu -->
             <ImageButton
                 android:id="@+id/btnMenu"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@android:drawable/ic_menu_sort_by_size"
-                android:background="?attr/selectableItemBackground"/>
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Menu"
+                android:src="@drawable/ic_menu"
+                app:tint="@android:color/white"/>
 
+            <!-- Título -->
             <TextView
                 android:id="@+id/txtToolbarTitle"
-                android:text="📖 Bíblia Sagrada"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="📖 Bíblia IBSCC"
+                android:textColor="@android:color/white"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:layout_marginStart="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:textStyle="bold"/>
+
         </LinearLayout>
 
-        <!-- TELA INÍCIO -->
-        <LinearLayout
-            android:id="@+id/layoutInicio"
+        <!-- CONTAINER DE CONTEÚDO -->
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="visible"/>
+            android:layout_height="match_parent">
 
-        <!-- TELA DA BÍBLIA -->
-        <LinearLayout
-            android:id="@+id/layoutBiblia"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone">
-            <ListView 
-                android:id="@+id/listLivros" 
-                android:layout_width="match_parent" 
-                android:layout_height="match_parent"/>
-        </LinearLayout>
+            <!-- TELA INÍCIO (Fragment) -->
+            <FrameLayout
+                android:id="@+id/layoutInicio"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"/>
 
-        <!-- TELA DE BUSCA -->
-        <LinearLayout
-            android:id="@+id/layoutBuscar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone"
-            android:padding="16dp">
-            <TextView 
-                android:text="🔎 Pesquisar" 
-                android:textSize="20sp" 
-                android:textStyle="bold" 
-                android:textColor="#1976D2" 
-                android:layout_marginBottom="10dp" 
-                android:layout_width="wrap_content" 
-                android:layout_height="wrap_content"/>
-            <EditText 
-                android:id="@+id/edtBusca" 
-                android:layout_width="match_parent" 
-                android:layout_height="wrap_content" 
-                android:hint="Digite uma palavra..." 
-                android:padding="12dp"/>
-            <Button 
-                android:id="@+id/btnPesquisar" 
-                android:layout_width="match_parent" 
-                android:layout_height="wrap_content" 
-                android:text="Pesquisar" 
-                android:layout_marginTop="10dp"/>
-            <ListView 
-                android:id="@+id/listResultados" 
-                android:layout_width="match_parent" 
-                android:layout_height="match_parent" 
-                android:layout_marginTop="10dp"/>
-        </LinearLayout>
+            <!-- TELA BÍBLIA -->
+            <LinearLayout
+                android:id="@+id/layoutBiblia"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:visibility="gone">
 
-        <!-- TELA DE FAVORITOS -->
-        <LinearLayout
-            android:id="@+id/layoutFavoritos"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone">
-            <TextView 
-                android:text="⭐ Favoritos" 
-                android:textSize="20sp" 
-                android:textStyle="bold" 
-                android:gravity="center" 
-                android:padding="16dp" 
-                android:textColor="#1976D2" 
-                android:layout_width="match_parent" 
-                android:layout_height="wrap_content"/>
-            <ListView 
-                android:id="@+id/listFavoritos" 
-                android:layout_width="match_parent" 
-                android:layout_height="match_parent"/>
-        </LinearLayout>
+                <!-- Card de título -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp">
 
-        <!-- TELA VERSÍCULO DO DIA -->
-        <LinearLayout
-            android:id="@+id/layoutVersiculoDia"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone"
-            android:gravity="center"
-            android:padding="24dp">
-            <TextView 
-                android:text="🔔 Versículo do Dia" 
-                android:textSize="22sp" 
-                android:textStyle="bold" 
-                android:textColor="#1976D2" 
-                android:layout_marginBottom="20dp" 
-                android:layout_width="wrap_content" 
-                android:layout_height="wrap_content"/>
-            <TextView 
-                android:id="@+id/txtVersiculoDia" 
-                android:text="Carregando..." 
-                android:textSize="18sp" 
-                android:gravity="center" 
-                android:lineSpacingExtra="6dp" 
-                android:layout_width="match_parent" 
-                android:layout_height="wrap_content"/>
-            <TextView 
-                android:id="@+id/txtReferenciaDia" 
-                android:text="" 
-                android:textSize="16sp" 
-                android:textStyle="italic" 
-                android:textColor="#1976D2" 
-                android:gravity="center" 
-                android:layout_marginTop="16dp" 
-                android:layout_width="match_parent" 
-                android:layout_height="wrap_content"/>
-            <Button 
-                android:id="@+id/btnCompartilharDia" 
-                android:layout_width="wrap_content" 
-                android:layout_height="wrap_content" 
-                android:text="📤 Compartilhar" 
-                android:layout_marginTop="24dp"/>
-        </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
-        <!-- TELA PROGRAMAÇÃO -->
-        <LinearLayout
-            android:id="@+id/layoutProgramacao"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="📚 Livros da Bíblia"
+                            android:textSize="20sp"
+                            android:textStyle="bold"/>
 
-        <!-- TELA PLANO DE LEITURA -->
-        <LinearLayout
-            android:id="@+id/layoutPlanoLeitura"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone"
-            android:padding="16dp">
-            <TextView 
-                android:text="📊 Plano de Leitura" 
-                android:textSize="20sp" 
-                android:textStyle="bold" 
-                android:textColor="#1976D2" 
-                android:layout_marginBottom="8dp" 
-                android:layout_width="wrap_content" 
-                android:layout_height="wrap_content"/>
-            <TextView 
-                android:id="@+id/txtDataHoje" 
-                android:text="" 
-                android:textSize="14sp" 
-                android:textColor="#666666" 
-                android:layout_marginBottom="16dp" 
-                android:layout_width="wrap_content" 
-                android:layout_height="wrap_content"/>
-            <ListView 
-                android:id="@+id/listPlanoLeitura" 
-                android:layout_width="match_parent" 
-                android:layout_height="match_parent"/>
-        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Selecione um livro para ler"
+                            android:textSize="14sp"
+                            android:textColor="#666666"/>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Lista de Livros -->
+                <ListView
+                    android:id="@+id/listLivros"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="#E0E0E0"
+                    android:dividerHeight="1dp"/>
+
+            </LinearLayout>
+
+            <!-- TELA BUSCAR -->
+            <LinearLayout
+                android:id="@+id/layoutBuscar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:visibility="gone">
+
+                <!-- Card de busca -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🔎 Buscar na Bíblia"
+                            android:textSize="20sp"
+                            android:textStyle="bold"/>
+
+                        <EditText
+                            android:id="@+id/edtBusca"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="12dp"
+                            android:background="@drawable/bg_edittext"
+                            android:hint="Digite palavra ou versículo..."
+                            android:inputType="text"
+                            android:padding="12dp"
+                            android:textSize="16sp"/>
+
+                        <Button
+                            android:id="@+id/btnPesquisar"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="12dp"
+                            android:background="@drawable/bg_button"
+                            android:text="🔍 Pesquisar"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textAllCaps="false"/>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Resultados -->
+                <ListView
+                    android:id="@+id/listResultados"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="#E0E0E0"
+                    android:dividerHeight="1dp"/>
+
+            </LinearLayout>
+
+            <!-- TELA FAVORITOS -->
+            <LinearLayout
+                android:id="@+id/layoutFavoritos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:visibility="gone">
+
+                <!-- Card de título -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="⭐ Seus Favoritos"
+                            android:textSize="20sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Versículos que você salvou"
+                            android:textSize="14sp"
+                            android:textColor="#666666"/>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Lista de Favoritos -->
+                <ListView
+                    android:id="@+id/listFavoritos"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="#E0E0E0"
+                    android:dividerHeight="1dp"/>
+
+            </LinearLayout>
+
+            <!-- TELA VERSÍCULO DO DIA -->
+            <LinearLayout
+                android:id="@+id/layoutVersiculoDia"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="24dp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🌅 Versículo do Dia"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#1976D2"/>
+
+                        <View
+                            android:layout_width="60dp"
+                            android:layout_height="3dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="#1976D2"/>
+
+                        <TextView
+                            android:id="@+id/txtVersiculoDia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Carregando versículo..."
+                            android:textSize="20sp"
+                            android:textStyle="italic"
+                            android:lineSpacingMultiplier="1.4"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/txtReferenciaDia"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="— Referência"
+                            android:textSize="16sp"
+                            android:textColor="#666666"
+                            android:textStyle="bold"/>
+
+                        <Button
+                            android:id="@+id/btnCompartilharDia"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="24dp"
+                            android:background="@drawable/bg_button"
+                            android:text="📤 Compartilhar"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textAllCaps="false"/>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <!-- TELA PROGRAMAÇÃO -->
+            <FrameLayout
+                android:id="@+id/layoutProgramacao"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"/>
+
+        </FrameLayout>
 
     </LinearLayout>
 
+    <!-- ============================================
+         NAVIGATION DRAWER (Menu Lateral)
+         ============================================ -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
-        android:layout_width="280dp"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu"/>
+        app:menu="@menu/navigation_menu"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -4,29 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="180dp"
     android:background="#1976D2"
-    android:orientation="vertical"
     android:gravity="bottom"
+    android:orientation="vertical"
     android:padding="16dp">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="📖"
-        android:textSize="48sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:textSize="48sp"/>
 
     <TextView
-        android:text="Bíblia Sagrada"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Bíblia IBSCC"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
 
     <TextView
-        android:text="criado por Ronald Barbosa"
-        android:textSize="12sp"
-        android:textColor="#DDDDDD"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="Versão 1.0"
+        android:textColor="#BBDEFB"
+        android:textSize="14sp"/>
 
 </LinearLayout>

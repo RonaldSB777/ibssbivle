@@ -1,22 +1,15 @@
 package com.ibscc.bible;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-
-import com.ibscc.bible.models.WeeklyEvent;
-import com.ibscc.bible.services.FirebaseRESTService;
 
 import java.util.Calendar;
 import java.util.List;
@@ -24,147 +17,185 @@ import java.util.Random;
 
 public class InicioFragment extends Fragment {
 
-    private TextView tvVersiculoDia, tvReferenciaDia;
-    private TextView tvProgressoDias, tvProgressoPercentual;
-    private ProgressBar progressBar;
-    private LinearLayout layoutProximoEvento;
-    private TextView tvProximoEventoTitulo, tvProximoEventoData;
-    
-    private CardView cardLerBiblia, cardBuscar, cardProgramacao, cardQuiz;
-    
+    private TextView txtSaudacao, txtVersiculoInicio, txtReferenciaInicio;
+    private Button btnAcessoBiblia, btnAcessoBuscar, btnAcessoFavoritos, btnAcessoProgramacao;
+    private Button btnVersiculoDia, btnQuiz;
+
     private BibleHelper bibleHelper;
-    private ReadingPlanHelper planHelper;
-    private FirebaseRESTService firebaseService;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_inicio, container, false);
-        
+
+        // Inicializar helper
         bibleHelper = new BibleHelper(getContext());
-        planHelper = new ReadingPlanHelper(getContext());
-        firebaseService = new FirebaseRESTService();
-        
-        initViews(view);
-        carregarVersiculoDoDia();
-        carregarProgresso();
-        carregarProximoEvento();
+
+        // Inicializar views
+        inicializarViews(view);
+
+        // Configurar saudação
+        configurarSaudacao();
+
+        // Configurar versículo do dia
+        configurarVersiculoDoDia();
+
+        // Configurar botões de acesso rápido
         configurarBotoes();
-        
+
         return view;
     }
 
-    private void initViews(View view) {
-        tvVersiculoDia = view.findViewById(R.id.tv_versiculo_dia);
-        tvReferenciaDia = view.findViewById(R.id.tv_referencia_dia);
-        tvProgressoDias = view.findViewById(R.id.tv_progresso_dias);
-        tvProgressoPercentual = view.findViewById(R.id.tv_progresso_percentual);
-        progressBar = view.findViewById(R.id.progress_bar_leitura);
-        layoutProximoEvento = view.findViewById(R.id.layout_proximo_evento);
-        tvProximoEventoTitulo = view.findViewById(R.id.tv_proximo_evento_titulo);
-        tvProximoEventoData = view.findViewById(R.id.tv_proximo_evento_data);
-        
-        cardLerBiblia = view.findViewById(R.id.card_ler_biblia);
-        cardBuscar = view.findViewById(R.id.card_buscar);
-        cardProgramacao = view.findViewById(R.id.card_programacao);
-        cardQuiz = view.findViewById(R.id.card_quiz);
+    private void inicializarViews(View view) {
+        txtSaudacao = view.findViewById(R.id.txtSaudacao);
+        txtVersiculoInicio = view.findViewById(R.id.txtVersiculoInicio);
+        txtReferenciaInicio = view.findViewById(R.id.txtReferenciaInicio);
+
+        btnAcessoBiblia = view.findViewById(R.id.btnAcessoBiblia);
+        btnAcessoBuscar = view.findViewById(R.id.btnAcessoBuscar);
+        btnAcessoFavoritos = view.findViewById(R.id.btnAcessoFavoritos);
+        btnAcessoProgramacao = view.findViewById(R.id.btnAcessoProgramacao);
+        btnVersiculoDia = view.findViewById(R.id.btnVersiculoDia);
+        btnQuiz = view.findViewById(R.id.btnQuiz);
     }
 
-    private void carregarVersiculoDoDia() {
-        Calendar cal = Calendar.getInstance();
-        int seed = cal.get(Calendar.DAY_OF_YEAR) + cal.get(Calendar.YEAR);
-        Random random = new Random(seed);
+    private void configurarSaudacao() {
+        Calendar calendar = Calendar.getInstance();
+        int hora = calendar.get(Calendar.HOUR_OF_DAY);
 
-        List<String> livros = bibleHelper.getBookNames();
-        List<String> abreviacoes = bibleHelper.getBookAbbreviations();
+        String saudacao;
+        String emoji;
 
-        int livroIndex = random.nextInt(livros.size());
-        String abrev = abreviacoes.get(livroIndex);
-        String livroNome = livros.get(livroIndex);
+        if (hora >= 5 && hora < 12) {
+            saudacao = "Bom dia";
+            emoji = "🌅";
+        } else if (hora >= 12 && hora < 18) {
+            saudacao = "Boa tarde";
+            emoji = "☀️";
+        } else {
+            saudacao = "Boa noite";
+            emoji = "🌙";
+        }
 
-        int totalCap = bibleHelper.getChapterCount(abrev);
-        if (totalCap == 0) return;
-
-        int cap = random.nextInt(totalCap) + 1;
-        List<Verse> verses = bibleHelper.getChapter(abrev, cap);
-
-        if (verses.isEmpty()) return;
-
-        int verseIndex = random.nextInt(verses.size());
-        Verse verse = verses.get(verseIndex);
-
-        tvVersiculoDia.setText("\"" + verse.getText() + "\"");
-        tvReferenciaDia.setText("— " + livroNome + " " + cap + ":" + verse.getNumber());
+        txtSaudacao.setText(emoji + " " + saudacao + "!");
     }
 
-    private void carregarProgresso() {
-        int progresso = planHelper.getProgress();
-        int percentual = (progresso * 100) / 365;
-        
-        tvProgressoDias.setText(progresso + "/365 dias");
-        tvProgressoPercentual.setText(percentual + "%");
-        progressBar.setProgress(percentual);
-    }
+    private void configurarVersiculoDoDia() {
+        try {
+            List<String> livros = bibleHelper.getBookNames();
+            List<String> abreviacoes = bibleHelper.getBookAbbreviations();
 
-    private void carregarProximoEvento() {
-        firebaseService.loadEvents(new FirebaseRESTService.OnEventsLoadedListener() {
-            @Override
-            public void onEventsLoaded(List<WeeklyEvent> events) {
-                if (events.isEmpty()) {
-                    layoutProximoEvento.setVisibility(View.GONE);
-                    return;
-                }
-                
-                // Buscar próximo evento
-                long agora = System.currentTimeMillis();
-                WeeklyEvent proximo = null;
-                
-                for (WeeklyEvent event : events) {
-                    if (event.getDateTimeMillis() > agora) {
-                        if (proximo == null || event.getDateTimeMillis() < proximo.getDateTimeMillis()) {
-                            proximo = event;
-                        }
-                    }
-                }
-                
-                if (proximo != null) {
-                    layoutProximoEvento.setVisibility(View.VISIBLE);
-                    tvProximoEventoTitulo.setText(proximo.getIcon() + " " + proximo.getTitle());
-                    tvProximoEventoData.setText(proximo.getDayName() + " • " + proximo.getFormattedTime());
-                } else {
-                    layoutProximoEvento.setVisibility(View.GONE);
-                }
+            if (livros == null || livros.isEmpty()) {
+                txtVersiculoInicio.setText("\"O Senhor é o meu pastor; nada me faltará.\"");
+                txtReferenciaInicio.setText("— Salmos 23:1");
+                return;
             }
 
-            @Override
-            public void onError(String error) {
-                layoutProximoEvento.setVisibility(View.GONE);
+            // Usar o dia do ano como seed para ter o mesmo versículo o dia todo
+            Calendar cal = Calendar.getInstance();
+            int seed = cal.get(Calendar.DAY_OF_YEAR) + cal.get(Calendar.YEAR);
+            Random random = new Random(seed);
+
+            int livroIndex = random.nextInt(livros.size());
+            String abrev = abreviacoes.get(livroIndex);
+            String livroNome = livros.get(livroIndex);
+
+            int totalCap = bibleHelper.getChapterCount(abrev);
+            if (totalCap == 0) {
+                txtVersiculoInicio.setText("\"O Senhor é o meu pastor; nada me faltará.\"");
+                txtReferenciaInicio.setText("— Salmos 23:1");
+                return;
             }
-        });
+
+            int cap = random.nextInt(totalCap) + 1;
+            List<Verse> verses = bibleHelper.getChapter(abrev, cap);
+
+            if (verses == null || verses.isEmpty()) {
+                txtVersiculoInicio.setText("\"O Senhor é o meu pastor; nada me faltará.\"");
+                txtReferenciaInicio.setText("— Salmos 23:1");
+                return;
+            }
+
+            int verseIndex = random.nextInt(verses.size());
+            Verse verse = verses.get(verseIndex);
+
+            txtVersiculoInicio.setText("\"" + verse.getText() + "\"");
+            txtReferenciaInicio.setText("— " + livroNome + " " + cap + ":" + verse.getNumber());
+
+        } catch (Exception e) {
+            txtVersiculoInicio.setText("\"O Senhor é o meu pastor; nada me faltará.\"");
+            txtReferenciaInicio.setText("— Salmos 23:1");
+        }
     }
 
     private void configurarBotoes() {
-        cardLerBiblia.setOnClickListener(v -> {
-            if (getActivity() instanceof MainActivity) {
-                ((MainActivity) getActivity()).abrirBiblia();
+        // Botão Bíblia
+        btnAcessoBiblia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getActivity() instanceof MainActivity) {
+                    ((MainActivity) getActivity()).abrirBiblia();
+                }
             }
         });
 
-        cardBuscar.setOnClickListener(v -> {
-            if (getActivity() instanceof MainActivity) {
-                ((MainActivity) getActivity()).abrirBusca();
+        // Botão Buscar
+        btnAcessoBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getActivity() instanceof MainActivity) {
+                    ((MainActivity) getActivity()).abrirBusca();
+                }
             }
         });
 
-        cardProgramacao.setOnClickListener(v -> {
-            if (getActivity() instanceof MainActivity) {
-                ((MainActivity) getActivity()).abrirProgramacao();
+        // Botão Favoritos
+        btnAcessoFavoritos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getActivity() instanceof MainActivity) {
+                    MainActivity activity = (MainActivity) getActivity();
+                    activity.esconderTodasTelas();
+                    activity.layoutFavoritos.setVisibility(View.VISIBLE);
+                    activity.txtToolbarTitle.setText("⭐ Favoritos");
+                    activity.carregarFavoritos();
+                }
             }
         });
 
-        cardQuiz.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), QuizMenuActivity.class);
-            startActivity(intent);
+        // Botão Programação
+        btnAcessoProgramacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getActivity() instanceof MainActivity) {
+                    ((MainActivity) getActivity()).abrirProgramacao();
+                }
+            }
+        });
+
+        // Botão Versículo do Dia
+        btnVersiculoDia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getActivity() instanceof MainActivity) {
+                    MainActivity activity = (MainActivity) getActivity();
+                    activity.esconderTodasTelas();
+                    activity.layoutVersiculoDia.setVisibility(View.VISIBLE);
+                    activity.txtToolbarTitle.setText("🔔 Versículo do Dia");
+                    activity.gerarVersiculoDoDia();
+                }
+            }
+        });
+
+        // Botão Quiz
+        btnQuiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getActivity() != null) {
+                    android.content.Intent intent = new android.content.Intent(getActivity(), QuizMenuActivity.class);
+                    startActivity(intent);
+                }
+            }
         });
     }
 }

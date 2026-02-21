@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.IBSSBIVLE.Card.Outlined"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:foreground="@drawable/ripple_effect">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center">
+
+        <!-- NOME DO LIVRO -->
+        <TextView
+            android:id="@+id/tvNomeLivro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gênesis"
+            android:textAppearance="@style/TextAppearance.IBSSBIVLE.Headline2"
+            android:textColor="?attr/colorOnSurface"
+            android:gravity="center"/>
+
+        <!-- NÚMERO DE CAPÍTULOS -->
+        <TextView
+            android:id="@+id/tvCapitulos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="50 capítulos"
+            android:textAppearance="@style/TextAppearance.IBSSBIVLE.Caption"
+            android:textColor="?attr/colorOnSurfaceVariant"/>
+
+        <!-- CHIP DE TESTAMENTO -->
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipTestamento"
+            style="@style/Widget.IBSSBIVLE.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Antigo"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

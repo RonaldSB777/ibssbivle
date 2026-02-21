@@ -1,6 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <!-- ============================================
+         TEMA CLARO (Light Mode)
+         ============================================ -->
+    <color name="primary_light">#4A90E2</color>
+    <color name="primary_variant_light">#3A7BC8</color>
+    <color name="secondary_light">#5CB85C</color>
+    <color name="secondary_variant_light">#4A9D4A</color>
+    
+    <color name="background_light">#FFFFFF</color>
+    <color name="surface_light">#F8F9FA</color>
+    <color name="card_background_light">#FFFFFF</color>
+    
+    <color name="text_primary_light">#212529</color>
+    <color name="text_secondary_light">#6C757D</color>
+    <color name="text_tertiary_light">#ADB5BD</color>
+    
+    <color name="border_light">#E0E0E0</color>
+    <color name="divider_light">#EEEEEE</color>
+    
+    <!-- ============================================
+         TEMA ESCURO (Dark Mode)
+         ============================================ -->
+    <color name="primary_dark">#5DA3F5</color>
+    <color name="primary_variant_dark">#4A90E2</color>
+    <color name="secondary_dark">#6EC97D</color>
+    <color name="secondary_variant_dark">#5CB85C</color>
+    
+    <color name="background_dark">#121212</color>
+    <color name="surface_dark">#1E1E1E</color>
+    <color name="card_background_dark">#2D2D2D</color>
+    
+    <color name="text_primary_dark">#E8E8E8</color>
+    <color name="text_secondary_dark">#A0A0A0</color>
+    <color name="text_tertiary_dark">#707070</color>
+    
+    <color name="border_dark">#404040</color>
+    <color name="divider_dark">#2D2D2D</color>
+    
+    <!-- ============================================
+         TEMA SÉPIA (Sepia Mode)
+         ============================================ -->
+    <color name="primary_sepia">#B8860B</color>
+    <color name="primary_variant_sepia">#9A7209</color>
+    <color name="secondary_sepia">#CD853F</color>
+    <color name="secondary_variant_sepia">#B87333</color>
+    
+    <color name="background_sepia">#F4ECD8</color>
+    <color name="surface_sepia">#E8DCC4</color>
+    <color name="card_background_sepia">#F9F3E6</color>
+    
+    <color name="text_primary_sepia">#5C4A3A</color>
+    <color name="text_secondary_sepia">#8B7355</color>
+    <color name="text_tertiary_sepia">#A89179</color>
+    
+    <color name="border_sepia">#D4C5A9</color>
+    <color name="divider_sepia">#E0D5C1</color>
+    
+    <!-- ============================================
+         CORES AUXILIARES
+         ============================================ -->
+    <color name="success">#28A745</color>
+    <color name="warning">#FFC107</color>
+    <color name="error">#DC3545</color>
+    <color name="info">#17A2B8</color>
+    
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    
+    <!-- ============================================
+         OVERLAY E SOMBRAS
+         ============================================ -->
+    <color name="overlay_light">#1A000000</color>
+    <color name="overlay_dark">#4D000000</color>
+    <color name="shadow">#1A000000</color>
+	
+    
+    <!-- Cores extras para o novo design -->
+    <color name="bottom_nav_color">#1976D2</color>
 </resources>

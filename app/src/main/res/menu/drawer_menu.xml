@@ -34,15 +34,17 @@
         android:title="❓ Quiz Bíblico" />
 
     <group android:id="@+id/group_config">
-        
-        <item
-            android:id="@+id/nav_modo_noturno"
-            android:title="🌙 Modo Noturno" />
+       
 
         <item
             android:id="@+id/nav_tamanho_fonte"
             android:title="🔤 Tamanho da Fonte" />
 
+<item
+    android:id="@+id/nav_trocar_tema"
+    android:icon="@drawable/ic_palette"
+    android:title="🎨 Trocar Tema" />
+	
     </group>
 
 </menu>

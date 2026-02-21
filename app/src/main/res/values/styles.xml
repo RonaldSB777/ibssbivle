@@ -1,11 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <!-- ============================================
+         ESTILOS DE TEXTO (SEM FONTES PERSONALIZADAS)
+         ============================================ -->
+    <style name="TextAppearance.IBSSBIVLE.Headline1" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textSize">32sp</item>
+        <item name="android:lineSpacingExtra">4dp</item>
     </style>
 
+    <style name="TextAppearance.IBSSBIVLE.Headline2" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="TextAppearance.IBSSBIVLE.Body" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingMultiplier">1.5</item>
+    </style>
+
+    <style name="TextAppearance.IBSSBIVLE.Verse" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">18sp</item>
+        <item name="android:lineSpacingMultiplier">1.8</item>
+    </style>
+
+    <style name="TextAppearance.IBSSBIVLE.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- ============================================
+         CARDS
+         ============================================ -->
+    <style name="Widget.IBSSBIVLE.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">12dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="contentPadding">16dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <!-- ============================================
+         BOTÕES
+         ============================================ -->
+    <style name="Widget.IBSSBIVLE.Button" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">8dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- ============================================
+         FAB (Floating Action Button)
+         ============================================ -->
+    <style name="Widget.IBSSBIVLE.FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="shapeAppearance">@style/ShapeAppearance.IBSSBIVLE.FAB</item>
+    </style>
+
+    <style name="ShapeAppearance.IBSSBIVLE.FAB" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">50%</item>
+    </style>
+	
+	<!-- Estilos extras para o novo design -->
+    <style name="Widget.IBSSBIVLE.Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:elevation">4dp</item>
+        <item name="titleTextColor">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="Widget.IBSSBIVLE.Card.Outlined" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">12dp</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="contentPadding">16dp</item>
+    </style>
+
+    <style name="Widget.IBSSBIVLE.Chip" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="chipCornerRadius">16dp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 </resources>
