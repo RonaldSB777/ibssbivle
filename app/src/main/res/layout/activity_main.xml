@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- CONTEÚDO PRINCIPAL -->
     <LinearLayout
         android:id="@+id/mainContent"
         android:layout_width="match_parent"
@@ -14,7 +13,6 @@
         android:orientation="vertical"
         android:background="#E3F2FD">
 
-        <!-- TOOLBAR -->
         <LinearLayout
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -42,20 +40,28 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 
-        <!-- 1️⃣ TELA DA BÍBLIA -->
+        <!-- TELA INÍCIO -->
+        <LinearLayout
+            android:id="@+id/layoutInicio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible"/>
+
+        <!-- TELA DA BÍBLIA -->
         <LinearLayout
             android:id="@+id/layoutBiblia"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="gone">
             <ListView 
                 android:id="@+id/listLivros" 
                 android:layout_width="match_parent" 
                 android:layout_height="match_parent"/>
         </LinearLayout>
 
-        <!-- 2️⃣ TELA DE BUSCA -->
+        <!-- TELA DE BUSCA -->
         <LinearLayout
             android:id="@+id/layoutBuscar"
             android:layout_width="match_parent"
@@ -90,7 +96,7 @@
                 android:layout_marginTop="10dp"/>
         </LinearLayout>
 
-        <!-- 3️⃣ TELA DE FAVORITOS -->
+        <!-- TELA DE FAVORITOS -->
         <LinearLayout
             android:id="@+id/layoutFavoritos"
             android:layout_width="match_parent"
@@ -112,7 +118,7 @@
                 android:layout_height="match_parent"/>
         </LinearLayout>
 
-        <!-- 4️⃣ TELA VERSÍCULO DO DIA -->
+        <!-- TELA VERSÍCULO DO DIA -->
         <LinearLayout
             android:id="@+id/layoutVersiculoDia"
             android:layout_width="match_parent"
@@ -155,7 +161,15 @@
                 android:layout_marginTop="24dp"/>
         </LinearLayout>
 
-        <!-- 5️⃣ TELA PLANO DE LEITURA -->
+        <!-- TELA PROGRAMAÇÃO -->
+        <LinearLayout
+            android:id="@+id/layoutProgramacao"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"/>
+
+        <!-- TELA PLANO DE LEITURA -->
         <LinearLayout
             android:id="@+id/layoutPlanoLeitura"
             android:layout_width="match_parent"
@@ -185,18 +199,8 @@
                 android:layout_height="match_parent"/>
         </LinearLayout>
 
-        <!-- ⭐⭐⭐ 6️⃣ TELA PROGRAMAÇÃO SEMANAL (NOVO) ⭐⭐⭐ -->
-        <LinearLayout
-            android:id="@+id/layoutProgramacao"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone"/>
-        <!-- ⭐⭐⭐ FIM DA TELA DE PROGRAMAÇÃO ⭐⭐⭐ -->
-
     </LinearLayout>
 
-    <!-- MENU LATERAL -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
         android:layout_width="280dp"

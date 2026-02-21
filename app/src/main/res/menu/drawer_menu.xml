@@ -2,6 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/nav_inicio"
+        android:title="🏠 Início" />
+
+    <item
         android:id="@+id/nav_biblia"
         android:title="📖 Bíblia Sagrada" />
 
@@ -38,6 +42,7 @@
         <item
             android:id="@+id/nav_tamanho_fonte"
             android:title="🔤 Tamanho da Fonte" />
+
     </group>
 
 </menu>

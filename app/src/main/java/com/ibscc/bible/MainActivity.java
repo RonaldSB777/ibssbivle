@@ -52,7 +52,6 @@ public class MainActivity extends FragmentActivity {
     boolean modoNoturno = false;
     int tamanhoFonte = 18;
 
-    // MENU SECRETO
     private int toquesTitulo = 0;
     private long ultimoToque = 0;
 
@@ -86,6 +85,12 @@ public class MainActivity extends FragmentActivity {
         configurarBusca();
         configurarVersiculoDia();
         aplicarTema();
+
+        // Carregar tela inicial
+        getSupportFragmentManager()
+            .beginTransaction()
+            .replace(R.id.layoutInicio, new InicioFragment())
+            .commit();
         
         DailyNotificationHelper.setupDailyNotification(this);
     }
@@ -114,7 +119,6 @@ public class MainActivity extends FragmentActivity {
         txtReferenciaDia = findViewById(R.id.txtReferenciaDia);
         btnCompartilharDia = findViewById(R.id.btnCompartilharDia);
 
-        // MENU SECRETO - 5 TOQUES NO TÍTULO
         txtToolbarTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,7 +161,10 @@ public class MainActivity extends FragmentActivity {
 
                 int id = item.getItemId();
 
-                if (id == R.id.nav_biblia) {
+                if (id == R.id.nav_inicio) {
+                    findViewById(R.id.layoutInicio).setVisibility(View.VISIBLE);
+                    txtToolbarTitle.setText("📖 Bíblia IBSCC");
+                } else if (id == R.id.nav_biblia) {
                     layoutBiblia.setVisibility(View.VISIBLE);
                     txtToolbarTitle.setText("📖 Bíblia Sagrada");
                 } else if (id == R.id.nav_buscar) {
@@ -205,6 +212,7 @@ public class MainActivity extends FragmentActivity {
         layoutFavoritos.setVisibility(View.GONE);
         layoutVersiculoDia.setVisibility(View.GONE);
         layoutProgramacao.setVisibility(View.GONE);
+        findViewById(R.id.layoutInicio).setVisibility(View.GONE);
     }
 
     private void carregarProgramacao() {
@@ -228,7 +236,6 @@ public class MainActivity extends FragmentActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     String senha = input.getText().toString();
                     
-                    // ALTERE A SENHA AQUI!
                     if (senha.equals("Gato2013@R")) {
                         Intent intent = new Intent(MainActivity.this, AdminProgramacaoActivity.class);
                         startActivity(intent);
@@ -485,5 +492,33 @@ public class MainActivity extends FragmentActivity {
         aplicarTema();
         configurarBiblia();
         carregarFavoritos();
+    }
+
+    public void abrirBiblia() {
+        esconderTodasTelas();
+        layoutBiblia.setVisibility(View.VISIBLE);
+        txtToolbarTitle.setText("📖 Bíblia Sagrada");
+        if (drawerLayout.isDrawerOpen(navigationView)) {
+            drawerLayout.closeDrawers();
+        }
+    }
+
+    public void abrirBusca() {
+        esconderTodasTelas();
+        layoutBuscar.setVisibility(View.VISIBLE);
+        txtToolbarTitle.setText("🔎 Buscar");
+        if (drawerLayout.isDrawerOpen(navigationView)) {
+            drawerLayout.closeDrawers();
+        }
+    }
+
+    public void abrirProgramacao() {
+        esconderTodasTelas();
+        layoutProgramacao.setVisibility(View.VISIBLE);
+        txtToolbarTitle.setText("📅 Programação");
+        carregarProgramacao();
+        if (drawerLayout.isDrawerOpen(navigationView)) {
+            drawerLayout.closeDrawers();
+        }
     }
 }
