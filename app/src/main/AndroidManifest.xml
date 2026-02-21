@@ -4,15 +4,17 @@
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-	<uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="Bíblia Sagrada"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-android:usesCleartextTraffic="true
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:usesCleartextTraffic="true">
+
+        <!-- ACTIVITY PRINCIPAL -->
         <activity 
             android:name=".MainActivity"
             android:exported="true"
@@ -23,9 +25,18 @@ android:usesCleartextTraffic="true
             </intent-filter>
         </activity>
 
+        <!-- OUTRAS ACTIVITIES -->
         <activity android:name=".ChapterActivity" />
         <activity android:name=".VerseActivity" />
+        <activity android:name=".QuizMenuActivity" />
+        <activity android:name=".QuizActivity" />
 
+        <!-- ⭐ ACTIVITY DE ADMIN -->
+        <activity
+            android:name=".AdminProgramacaoActivity"
+            android:label="Admin - Programação" />
+
+        <!-- RECEIVER PARA NOTIFICAÇÕES -->
         <receiver 
             android:name=".DailyNotificationHelper"
             android:enabled="true"
@@ -34,7 +45,7 @@ android:usesCleartextTraffic="true
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-<activity android:name=".QuizMenuActivity" />
-<activity android:name=".QuizActivity" />
+
     </application>
+
 </manifest>

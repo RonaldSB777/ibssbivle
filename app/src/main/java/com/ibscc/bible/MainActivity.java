@@ -52,6 +52,10 @@ public class MainActivity extends FragmentActivity {
     boolean modoNoturno = false;
     int tamanhoFonte = 18;
 
+    // MENU SECRETO
+    private int toquesTitulo = 0;
+    private long ultimoToque = 0;
+
     int COR_FUNDO_CLARO = Color.parseColor("#E3F2FD");
     int COR_TOOLBAR_CLARO = Color.parseColor("#1976D2");
     int COR_ITEM_CLARO = Color.parseColor("#FFFFFF");
@@ -109,6 +113,32 @@ public class MainActivity extends FragmentActivity {
         txtVersiculoDia = findViewById(R.id.txtVersiculoDia);
         txtReferenciaDia = findViewById(R.id.txtReferenciaDia);
         btnCompartilharDia = findViewById(R.id.btnCompartilharDia);
+
+        // MENU SECRETO - 5 TOQUES NO TÍTULO
+        txtToolbarTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                long agora = System.currentTimeMillis();
+                
+                if (agora - ultimoToque > 2000) {
+                    toquesTitulo = 0;
+                }
+                
+                ultimoToque = agora;
+                toquesTitulo++;
+                
+                if (toquesTitulo >= 3 && toquesTitulo < 5) {
+                    Toast.makeText(MainActivity.this, 
+                        "Mais " + (5 - toquesTitulo) + " toques...", 
+                        Toast.LENGTH_SHORT).show();
+                }
+                
+                if (toquesTitulo >= 5) {
+                    toquesTitulo = 0;
+                    verificarSenhaAdmin();
+                }
+            }
+        });
     }
 
     private void configurarDrawer() {
@@ -141,13 +171,11 @@ public class MainActivity extends FragmentActivity {
                     layoutVersiculoDia.setVisibility(View.VISIBLE);
                     txtToolbarTitle.setText("🔔 Versículo do Dia");
                     gerarVersiculoDoDia();
-                } 
-                else if (id == R.id.nav_programacao) {
+                } else if (id == R.id.nav_programacao) {
                     layoutProgramacao.setVisibility(View.VISIBLE);
                     txtToolbarTitle.setText("📅 Programação");
                     carregarProgramacao();
-                }
-                else if (id == R.id.nav_plano_leitura) {
+                } else if (id == R.id.nav_plano_leitura) {
                     mostrarPlanoLeitura();
                 } else if (id == R.id.nav_quiz) {
                     Intent intent = new Intent(MainActivity.this, QuizMenuActivity.class);
@@ -184,6 +212,34 @@ public class MainActivity extends FragmentActivity {
             .beginTransaction()
             .replace(R.id.layoutProgramacao, new ProgramacaoFragment())
             .commit();
+    }
+
+    private void verificarSenhaAdmin() {
+        final EditText input = new EditText(this);
+        input.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        input.setHint("Digite a senha");
+
+        new AlertDialog.Builder(this)
+            .setTitle("🔐 Acesso Restrito")
+            .setMessage("Digite a senha de administrador:")
+            .setView(input)
+            .setPositiveButton("Entrar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String senha = input.getText().toString();
+                    
+                    // ALTERE A SENHA AQUI!
+                    if (senha.equals("Gato2013@R")) {
+                        Intent intent = new Intent(MainActivity.this, AdminProgramacaoActivity.class);
+                        startActivity(intent);
+                        Toast.makeText(MainActivity.this, "✅ Acesso liberado!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, "❌ Senha incorreta!", Toast.LENGTH_LONG).show();
+                    }
+                }
+            })
+            .setNegativeButton("Cancelar", null)
+            .show();
     }
 
     private void configurarBiblia() {
