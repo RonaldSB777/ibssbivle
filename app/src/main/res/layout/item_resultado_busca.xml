@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/bg_card_branco"
+    android:layout_margin="8dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <!-- REFERENCIA -->
+    <TextView
+        android:id="@+id/tvReferencia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Genesis 1:1"
+        android:textSize="14sp"
+        android:textColor="#1976D2"
+        android:textStyle="bold"/>
+
+    <!-- TEXTO DO VERSICULO -->
+    <TextView
+        android:id="@+id/tvTextoVersiculo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="No principio criou Deus os ceus e a terra."
+        android:textSize="16sp"
+        android:textColor="#333333"
+        android:lineSpacingMultiplier="1.4"/>
+
+</LinearLayout>

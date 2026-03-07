@@ -30,6 +30,10 @@
         <activity android:name=".VerseActivity" />
         <activity android:name=".QuizMenuActivity" />
         <activity android:name=".QuizActivity" />
+		<activity
+    android:name=".BuscarActivity"
+    android:screenOrientation="portrait"
+    android:windowSoftInputMode="adjustResize"/>
 
         <!-- ⭐ ACTIVITY DE ADMIN -->
         <activity

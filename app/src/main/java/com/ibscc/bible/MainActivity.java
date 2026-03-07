@@ -40,7 +40,7 @@ public class MainActivity extends FragmentActivity {
     LinearLayout mainContent;
     View toolbar;
 
-    // Layouts de conteúdo (PUBLIC para Fragments)
+    // Layouts de conteudo (PUBLIC para Fragments)
     public LinearLayout layoutBiblia, layoutBuscar, layoutFavoritos;
     public View layoutVersiculoDia;
     public View layoutProgramacao;
@@ -49,11 +49,11 @@ public class MainActivity extends FragmentActivity {
     ListView listLivros, listResultados, listFavoritos;
     List<String> livros, abreviacoes;
     
-    // Busca
+    // Busca simples (mantida para compatibilidade)
     EditText edtBusca;
     Button btnPesquisar;
     
-    // Versículo do Dia
+    // Versiculo do Dia
     public TextView txtVersiculoDia, txtReferenciaDia;
     Button btnCompartilharDia;
 
@@ -65,13 +65,13 @@ public class MainActivity extends FragmentActivity {
     ThemeManager themeManager;
     
     // ============================================
-    // PREFERÊNCIAS E CONFIGURAÇÕES
+    // PREFERENCIAS E CONFIGURACOES
     // ============================================
     SharedPreferences prefs;
     boolean modoNoturno = false;
     int tamanhoFonte = 18;
 
-    // Controle de toques no título (acesso admin)
+    // Controle de toques no titulo (acesso admin)
     private int toquesTitulo = 0;
     private long ultimoToque = 0;
 
@@ -94,7 +94,7 @@ public class MainActivity extends FragmentActivity {
     int COR_BOTAO_ESCURO = Color.parseColor("#333333");
 
     // ============================================
-    // MÉTODO PRINCIPAL - onCreate
+    // METODO PRINCIPAL - onCreate
     // ============================================
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +106,7 @@ public class MainActivity extends FragmentActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
 
-            // Carregar preferências
+            // Carregar preferencias
             prefs = getSharedPreferences("BibliaPrefs", MODE_PRIVATE);
             modoNoturno = prefs.getBoolean("modoNoturno", false);
             tamanhoFonte = prefs.getInt("tamanhoFonte", 18);
@@ -119,7 +119,7 @@ public class MainActivity extends FragmentActivity {
             inicializarViews();
             configurarDrawer();
             configurarBiblia();
-            configurarBusca();
+            configurarBuscaSimples();
             configurarVersiculoDia();
             aplicarTema();
 
@@ -140,11 +140,11 @@ public class MainActivity extends FragmentActivity {
                 txtToolbarTitle.setText("Biblia Sagrada");
             }
             
-            // Configurar notificações diárias
+            // Configurar notificacoes diarias
             try {
                 DailyNotificationHelper.setupDailyNotification(this);
             } catch (Exception e) {
-                // Ignorar erro de notificação
+                // Ignorar erro de notificacao
             }
             
         } catch (Exception e) {
@@ -160,7 +160,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     // ============================================
-    // INICIALIZAÇÃO DE VIEWS
+    // INICIALIZACAO DE VIEWS
     // ============================================
     private void inicializarViews() {
         try {
@@ -183,7 +183,7 @@ public class MainActivity extends FragmentActivity {
             toolbar = findViewById(R.id.toolbar);
             if (toolbar == null) throw new Exception("toolbar nao encontrado!");
 
-            // Layouts de conteúdo
+            // Layouts de conteudo
             layoutBiblia = findViewById(R.id.layoutBiblia);
             if (layoutBiblia == null) throw new Exception("layoutBiblia nao encontrado!");
             
@@ -209,14 +209,14 @@ public class MainActivity extends FragmentActivity {
             listFavoritos = findViewById(R.id.listFavoritos);
             if (listFavoritos == null) throw new Exception("listFavoritos nao encontrado!");
             
-            // Busca
+            // Busca simples
             edtBusca = findViewById(R.id.edtBusca);
             if (edtBusca == null) throw new Exception("edtBusca nao encontrado!");
             
             btnPesquisar = findViewById(R.id.btnPesquisar);
             if (btnPesquisar == null) throw new Exception("btnPesquisar nao encontrado!");
 
-            // Versículo do Dia
+            // Versiculo do Dia
             txtVersiculoDia = findViewById(R.id.txtVersiculoDia);
             if (txtVersiculoDia == null) throw new Exception("txtVersiculoDia nao encontrado!");
             
@@ -226,7 +226,7 @@ public class MainActivity extends FragmentActivity {
             btnCompartilharDia = findViewById(R.id.btnCompartilharDia);
             if (btnCompartilharDia == null) throw new Exception("btnCompartilharDia nao encontrado!");
 
-            // Easter Egg: Toques no título para acesso admin
+            // Easter Egg: Toques no titulo para acesso admin
             txtToolbarTitle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -254,7 +254,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     // ============================================
-    // CONFIGURAÇÃO DO DRAWER (Menu Lateral)
+    // CONFIGURACAO DO DRAWER (Menu Lateral)
     // ============================================
     private void configurarDrawer() {
         try {
@@ -291,8 +291,8 @@ public class MainActivity extends FragmentActivity {
                         txtToolbarTitle.setText("Biblia Sagrada");
                     } 
                     else if (id == R.id.nav_buscar) {
-                        layoutBuscar.setVisibility(View.VISIBLE);
-                        txtToolbarTitle.setText("Buscar");
+                        // ABRIR BUSCA AVANCADA
+                        abrirBuscaAvancada();
                     } 
                     else if (id == R.id.nav_favoritos) {
                         layoutFavoritos.setVisibility(View.VISIBLE);
@@ -333,7 +333,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     // ============================================
-    // DIÁLOGO DE ESCOLHA DE TEMA
+    // DIALOGO DE ESCOLHA DE TEMA
     // ============================================
     private void mostrarDialogoTema() {
         String[] temas = {
@@ -378,7 +378,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     // ============================================
-    // CARREGAR PROGRAMAÇÃO
+    // CARREGAR PROGRAMACAO
     // ============================================
     private void carregarProgramacao() {
         try {
@@ -421,7 +421,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     // ============================================
-    // CONFIGURAR BÍBLIA (Lista de Livros)
+    // CONFIGURAR BIBLIA (Lista de Livros)
     // ============================================
     private void configurarBiblia() {
         try {
@@ -461,9 +461,9 @@ public class MainActivity extends FragmentActivity {
     }
 
     // ============================================
-    // CONFIGURAR BUSCA
+    // CONFIGURAR BUSCA SIMPLES (PARA O LAYOUT ANTIGO)
     // ============================================
-    private void configurarBusca() {
+    private void configurarBuscaSimples() {
         try {
             btnPesquisar.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -500,7 +500,7 @@ public class MainActivity extends FragmentActivity {
                 }
             });
         } catch (Exception e) {
-            throw new RuntimeException("ERRO em configurarBusca: " + e.getMessage(), e);
+            throw new RuntimeException("ERRO em configurarBuscaSimples: " + e.getMessage(), e);
         }
     }
 
@@ -537,7 +537,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     // ============================================
-    // CONFIGURAR VERSÍCULO DO DIA
+    // CONFIGURAR VERSICULO DO DIA
     // ============================================
     private void configurarVersiculoDia() {
         try {
@@ -555,7 +555,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     // ============================================
-    // GERAR VERSÍCULO DO DIA (PUBLIC)
+    // GERAR VERSICULO DO DIA (PUBLIC)
     // ============================================
     public void gerarVersiculoDoDia() {
         try {
@@ -649,7 +649,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     // ============================================
-    // DIÁLOGO DE TAMANHO DE FONTE
+    // DIALOGO DE TAMANHO DE FONTE
     // ============================================
     private void mostrarDialogoFonte() {
         final String[] opcoes = {"Pequena (14)", "Normal (18)", "Grande (22)", "Muito Grande (26)"};
@@ -743,8 +743,12 @@ public class MainActivity extends FragmentActivity {
     }
 
     // ============================================
-    // MÉTODOS PÚBLICOS (Para Fragments)
+    // METODOS PUBLICOS (Para Fragments)
     // ============================================
+    
+    /**
+     * Abre a tela da Biblia
+     */
     public void abrirBiblia() {
         esconderTodasTelas();
         layoutBiblia.setVisibility(View.VISIBLE);
@@ -754,15 +758,24 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
+    /**
+     * Abre a tela de busca AVANCADA (nova Activity)
+     */
     public void abrirBusca() {
-        esconderTodasTelas();
-        layoutBuscar.setVisibility(View.VISIBLE);
-        txtToolbarTitle.setText("Buscar");
-        if (drawerLayout.isDrawerOpen(navigationView)) {
-            drawerLayout.closeDrawers();
-        }
+        abrirBuscaAvancada();
     }
 
+    /**
+     * Abre a Activity de Busca Avancada
+     */
+    public void abrirBuscaAvancada() {
+        Intent intent = new Intent(this, BuscarActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Abre a tela de programacao
+     */
     public void abrirProgramacao() {
         esconderTodasTelas();
         layoutProgramacao.setVisibility(View.VISIBLE);
@@ -773,6 +786,9 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
+    /**
+     * Abre a tela de favoritos
+     */
     public void abrirFavoritos() {
         esconderTodasTelas();
         layoutFavoritos.setVisibility(View.VISIBLE);
@@ -783,6 +799,9 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
+    /**
+     * Abre a tela de versiculo do dia
+     */
     public void abrirVersiculoDia() {
         esconderTodasTelas();
         layoutVersiculoDia.setVisibility(View.VISIBLE);

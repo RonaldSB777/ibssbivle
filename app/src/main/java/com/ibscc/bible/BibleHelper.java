@@ -133,6 +133,80 @@ public class BibleHelper {
         return results;
     }
 
+    // Converte nome completo para abreviação
+    public String getBookAbbreviation(String bookName) {
+        switch (bookName) {
+            case "Gênesis": return "gn";
+            case "Êxodo": return "ex";
+            case "Levítico": return "lv";
+            case "Números": return "nm";
+            case "Deuteronômio": return "dt";
+            case "Josué": return "js";
+            case "Juízes": return "jz";
+            case "Rute": return "rt";
+            case "1 Samuel": return "1sm";
+            case "2 Samuel": return "2sm";
+            case "1 Reis": return "1rs";
+            case "2 Reis": return "2rs";
+            case "1 Crônicas": return "1cr";
+            case "2 Crônicas": return "2cr";
+            case "Esdras": return "ed";
+            case "Neemias": return "ne";
+            case "Ester": return "et";
+            case "Jó": return "job";
+            case "Salmos": return "sl";
+            case "Provérbios": return "pv";
+            case "Eclesiastes": return "ec";
+            case "Cânticos": return "ct";
+            case "Isaías": return "is";
+            case "Jeremias": return "jr";
+            case "Lamentações": return "lm";
+            case "Ezequiel": return "ez";
+            case "Daniel": return "dn";
+            case "Oséias": return "os";
+            case "Joel": return "jl";
+            case "Amós": return "am";
+            case "Obadias": return "ob";
+            case "Jonas": return "jn";
+            case "Miquéias": return "mq";
+            case "Naum": return "na";
+            case "Habacuque": return "hc";
+            case "Sofonias": return "sf";
+            case "Ageu": return "ag";
+            case "Zacarias": return "zc";
+            case "Malaquias": return "ml";
+            case "Mateus": return "mt";
+            case "Marcos": return "mc";
+            case "Lucas": return "lc";
+            case "João": return "jo";
+            case "Atos": return "at";
+            case "Romanos": return "rm";
+            case "1 Coríntios": return "1co";
+            case "2 Coríntios": return "2co";
+            case "Gálatas": return "gl";
+            case "Efésios": return "ef";
+            case "Filipenses": return "fp";
+            case "Colossenses": return "cl";
+            case "1 Tessalonicenses": return "1ts";
+            case "2 Tessalonicenses": return "2ts";
+            case "1 Timóteo": return "1tm";
+            case "2 Timóteo": return "2tm";
+            case "Tito": return "tt";
+            case "Filemom": return "fm";
+            case "Hebreus": return "hb";
+            case "Tiago": return "tg";
+            case "1 Pedro": return "1pe";
+            case "2 Pedro": return "2pe";
+            case "1 João": return "1jo";
+            case "2 João": return "2jo";
+            case "3 João": return "3jo";
+            case "Judas": return "jd";
+            case "Apocalipse": return "ap";
+            default: return bookName.toLowerCase();
+        }
+    }
+
+    // Converte abreviação para nome completo
     public String getBookName(String abbr) {
         switch (abbr) {
             case "gn": return "Gênesis";
